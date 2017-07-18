@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  Up&Down
 //
-//  Created by 郭佳哲 on 5/15/16.
+//  Copyright © 2017 bsdelf. All rights reserved.
 //  Copyright © 2016 郭佳哲. All rights reserved.
 //
 
@@ -16,7 +16,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let autoLaunchMenu:NSMenuItem
     
     override init() {
-        statusItem = NSStatusBar.system().statusItem(withLength: 72)
+        statusItem = NSStatusBar.system().statusItem(withLength: 120)
         
         menu = NSMenu()
         autoLaunchMenu = NSMenuItem()
@@ -33,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-         NetWorkMonitor(statusItemView: statusItemView).start()
+         SystemMonitor(statusItemView: statusItemView).start()
     }
 }
 

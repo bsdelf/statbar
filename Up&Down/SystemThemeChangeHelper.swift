@@ -2,7 +2,7 @@
 //  SystemThemeChangeHelper.swift
 //  Up&Down
 //
-//  Created by 郭佳哲 on 5/20/16.
+//  Copyright © 2017 bsdelf. All rights reserved.
 //  Copyright © 2016 郭佳哲. All rights reserved.
 //
 
