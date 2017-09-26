@@ -207,7 +207,7 @@ public struct SMCParamStruct {
     var data32: UInt32 = 0
 
     /// Data returned from the SMC
-    var bytes = (UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
+    var bytes: SMCBytes = (UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
                  UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
                  UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
                  UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
@@ -733,7 +733,7 @@ extension SMCKit {
         if speed <= 0 || speed > maxSpeed { throw SMCError.unsafeFanSpeed }
 
         let data = speed.toFPE2()
-        let bytes = (data.0, data.1, UInt8(0), UInt8(0), UInt8(0), UInt8(0),
+        let bytes: SMCBytes = (data.0, data.1, UInt8(0), UInt8(0), UInt8(0), UInt8(0),
                      UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
                      UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
                      UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0), UInt8(0),
