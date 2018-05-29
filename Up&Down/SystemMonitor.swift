@@ -29,12 +29,12 @@ open class SystemMonitor: NSObject {
         Thread(target: self, selector: #selector(startUpdateTimer), object: nil).start()
     }
     
-    func startUpdateTimer() {
+    @objc func startUpdateTimer() {
         Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updateNetWorkData), userInfo: nil, repeats: true)
         RunLoop.current.run()
     }
     
-    func updateNetWorkData() {
+    @objc func updateNetWorkData() {
         do {
             let coreTemp = try SMCKit.temperature(TemperatureSensors.CPU_0_PROXIMITY.code)
             let fanSpeed = try SMCKit.fanCurrentSpeed(0)

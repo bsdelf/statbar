@@ -12,9 +12,9 @@ import Foundation
 extension String {
     func leftPadding(toLength: Int, withPad: String = " ") -> String {
         
-        guard toLength > self.characters.count else { return self }
+        guard toLength > self.count else { return self }
         
-        let padding = String(repeating: withPad, count: toLength - self.characters.count)
+        let padding = String(repeating: withPad, count: toLength - self.count)
         return padding + self
     }
 }
@@ -58,24 +58,26 @@ open class StatusItemView: NSControl {
         
         
         fontColor = (darkMode||mouseDown) ? NSColor.white : NSColor.black
-        let fontAttributes = [NSFontAttributeName: NSFont.monospacedDigitSystemFont(ofSize: fontSize, weight: NSFontWeightRegular), NSForegroundColorAttributeName: fontColor] as [String : Any]
-        
+        let fontAttributes = [
+            NSAttributedStringKey.font: NSFont.monospacedDigitSystemFont(ofSize: fontSize, weight: NSFont.Weight.regular),
+            NSAttributedStringKey.foregroundColor: fontColor
+            ] as [NSAttributedStringKey : Any]
         
         let fanSpeedString = NSAttributedString(string: fanSpeedStr+" ♨", attributes: fontAttributes)
-        let fanSpeedRect = fanSpeedString.boundingRect(with: NSSize(width: 100, height: 100), options: .usesLineFragmentOrigin)
+        let fanSpeedRect = fanSpeedString.boundingRect(with: NSSize(width: 100, height: 100), options: NSString.DrawingOptions.usesLineFragmentOrigin)
         fanSpeedString.draw(at: NSMakePoint(bounds.width - fanSpeedRect.width - 5, 0))
         
         let coreTempString = NSAttributedString(string: coreTempStr+" ℃", attributes: fontAttributes)
-        let coreTempRect = coreTempString.boundingRect(with: NSSize(width: 100, height: 100), options: .usesLineFragmentOrigin)
+        let coreTempRect = coreTempString.boundingRect(with: NSSize(width: 100, height: 100), options: NSString.DrawingOptions.usesLineFragmentOrigin)
         coreTempString.draw(at: NSMakePoint(bounds.width - coreTempRect.width - 5, 10))
         
 
         let upRateString = NSAttributedString(string: upRate+" ↑", attributes: fontAttributes)
-        let upRateRect = upRateString.boundingRect(with: NSSize(width: 100, height: 100), options: .usesLineFragmentOrigin)
+        let upRateRect = upRateString.boundingRect(with: NSSize(width: 100, height: 100), options: NSString.DrawingOptions.usesLineFragmentOrigin)
         upRateString.draw(at: NSMakePoint(bounds.width - upRateRect.width - 40 - 5, 0))
         
         let downRateString = NSAttributedString(string: downRate+" ↓", attributes: fontAttributes)
-        let downRateRect = downRateString.boundingRect(with: NSSize(width: 100, height: 100), options: .usesLineFragmentOrigin)
+        let downRateRect = downRateString.boundingRect(with: NSSize(width: 100, height: 100), options: NSString.DrawingOptions.usesLineFragmentOrigin)
         downRateString.draw(at: NSMakePoint(bounds.width - downRateRect.width - 40 - 5, 10))
     }
     
@@ -135,7 +137,7 @@ open class StatusItemView: NSControl {
         }
     }
     
-    func changeMode() {
+    @objc func changeMode() {
         darkMode = SystemThemeChangeHelper.isCurrentDark()
         setNeedsDisplay()
     }
