@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  Up&Down
+//  Statbar
 //
 //  Copyright © 2017 bsdelf. All rights reserved.
 //  Copyright © 2016 郭佳哲. All rights reserved.
@@ -26,7 +26,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(autoLaunchMenu)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(withTitle: NSLocalizedString("About", comment: ""), action: #selector(menuItemAboutClick), keyEquivalent: "")
-        menu.addItem(withTitle: NSLocalizedString("Quit Up&Down", comment: ""), action: #selector(menuItemQuitClick), keyEquivalent: "q")
+        menu.addItem(withTitle: NSLocalizedString("Quit Statbar", comment: ""), action: #selector(menuItemQuitClick), keyEquivalent: "q")
         
         statusItemView = StatusItemView(statusItem: statusItem, menu: menu)
         statusItem.view = statusItemView
@@ -45,7 +45,7 @@ extension AppDelegate {
     
     @objc func menuItemAboutClick() {
         let alert = NSAlert()
-        alert.messageText = NSLocalizedString("About Up&Down", comment:"")
+        alert.messageText = NSLocalizedString("About Statbar", comment:"")
         alert.addButton(withTitle: "Github")
         alert.addButton(withTitle: NSLocalizedString("Close", comment:""))
         alert.informativeText = NSLocalizedString("About content", comment: "")
@@ -53,7 +53,7 @@ extension AppDelegate {
         switch result {
         case NSApplication.ModalResponse.alertFirstButtonReturn:
             //open Github page
-            NSWorkspace.shared.open(URL(string: "https://github.com/gjiazhe/Up-Down")!)
+            NSWorkspace.shared.open(URL(string: "https://github.com/bsdelf/statbar")!)
             break
         default:
             //close alert window

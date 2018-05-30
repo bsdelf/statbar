@@ -1,6 +1,6 @@
 //
 //  StatusItemView.swift
-//  Up&Down
+//  Statbar
 //
 //  Copyright © 2017 bsdelf. All rights reserved.
 //  Copyright © 2016 郭佳哲. All rights reserved.

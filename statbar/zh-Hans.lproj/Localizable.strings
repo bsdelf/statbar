@@ -1,6 +1,6 @@
 /* 
   Localizable.strings
-  Up&Down
+  Statbar
 
   Copyright © 2017 bsdelf. All rights reserved.
   Copyright © 2016 郭佳哲. All rights reserved.
@@ -8,7 +8,7 @@
 
 "Start at login" = "开机时启动";
 "About" = "关于";
-"Quit Up&Down" = "退出 Up&Down";
+"Quit Statbar" = "退出 Statbar";
 "Close" = "关闭";
-"About Up&Down" = "关于 Up&Down";
-"About content" = "Up&Down 是一个开源的 Mac OS X 应用， 可以在状态栏上显示上传和下载速度。";
+"About Statbar" = "关于 Statbar";
+"About content" = "Statbar 是一个开源的 Mac OS X 应用， 可以在状态栏上显示多项系统运行指标。";

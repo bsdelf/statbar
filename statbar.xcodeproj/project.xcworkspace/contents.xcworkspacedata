@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Up&amp;Down.xcodeproj">
+      location = "self:Statbar.xcodeproj">
    </FileRef>
 </Workspace>

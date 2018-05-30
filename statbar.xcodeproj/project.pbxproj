@@ -21,7 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		430175E51CF2CA030051D8C9 /* Up&Down.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Up&Down.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		430175E51CF2CA030051D8C9 /* Statbar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Statbar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		430175E81CF2CA030051D8C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		430175EC1CF2CA030051D8C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		430175EF1CF2CA030051D8C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,7 +33,7 @@
 		436AB3991D0FD8D200D40F37 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		436AB39A1D0FDD8B00D40F37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4382318D1D01BCD40090FAC9 /* SystemMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemMonitor.swift; sourceTree = "<group>"; };
-		F7A850331F1E2CAB00560E2C /* Up&Down-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Up&Down-Bridging-Header.h"; sourceTree = "<group>"; };
+		F7A850331F1E2CAB00560E2C /* Statbar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Statbar-Bridging-Header.h"; sourceTree = "<group>"; };
 		F7A850341F1E2CAC00560E2C /* NetIO.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetIO.c; sourceTree = "<group>"; };
 		F7A850361F1E473600560E2C /* SMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMC.swift; sourceTree = "<group>"; };
 		F7A850381F1E473D00560E2C /* SMCObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMCObject.swift; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 		430175DC1CF2CA030051D8C9 = {
 			isa = PBXGroup;
 			children = (
-				430175E71CF2CA030051D8C9 /* Up&Down */,
+				430175E71CF2CA030051D8C9 /* statbar */,
 				430175E61CF2CA030051D8C9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,12 +61,12 @@
 		430175E61CF2CA030051D8C9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				430175E51CF2CA030051D8C9 /* Up&Down.app */,
+				430175E51CF2CA030051D8C9 /* Statbar.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		430175E71CF2CA030051D8C9 /* Up&Down */ = {
+		430175E71CF2CA030051D8C9 /* statbar */ = {
 			isa = PBXGroup;
 			children = (
 				F7A850381F1E473D00560E2C /* SMCObject.swift */,
@@ -80,9 +80,9 @@
 				430175F11CF2CA030051D8C9 /* Info.plist */,
 				430175EC1CF2CA030051D8C9 /* Assets.xcassets */,
 				436AB3971D0FD81600D40F37 /* Localizable.strings */,
-				F7A850331F1E2CAB00560E2C /* Up&Down-Bridging-Header.h */,
+				F7A850331F1E2CAB00560E2C /* Statbar-Bridging-Header.h */,
 			);
-			path = "Up&Down";
+			path = statbar;
 			sourceTree = "<group>";
 		};
 		430175F71CF2CB740051D8C9 /* Helpers */ = {
@@ -97,9 +97,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		430175E41CF2CA030051D8C9 /* Up&Down */ = {
+		430175E41CF2CA030051D8C9 /* Statbar */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 430175F41CF2CA030051D8C9 /* Build configuration list for PBXNativeTarget "Up&Down" */;
+			buildConfigurationList = 430175F41CF2CA030051D8C9 /* Build configuration list for PBXNativeTarget "Statbar" */;
 			buildPhases = (
 				430175E11CF2CA030051D8C9 /* Sources */,
 				430175E21CF2CA030051D8C9 /* Frameworks */,
@@ -109,9 +109,9 @@
 			);
 			dependencies = (
 			);
-			name = "Up&Down";
-			productName = "Up&Down";
-			productReference = 430175E51CF2CA030051D8C9 /* Up&Down.app */;
+			name = Statbar;
+			productName = Statbar;
+			productReference = 430175E51CF2CA030051D8C9 /* Statbar.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -130,7 +130,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 430175E01CF2CA030051D8C9 /* Build configuration list for PBXProject "Up&Down" */;
+			buildConfigurationList = 430175E01CF2CA030051D8C9 /* Build configuration list for PBXProject "statbar" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -144,7 +144,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				430175E41CF2CA030051D8C9 /* Up&Down */,
+				430175E41CF2CA030051D8C9 /* Statbar */,
 			);
 		};
 /* End PBXProject section */
@@ -313,11 +313,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "Up&Down/Info.plist";
+				INFOPLIST_FILE = Statbar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gjiazhe.Up-Down";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bsdelf.statbar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Up&Down/Up&Down-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Statbar/Statbar-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
@@ -330,11 +330,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "Up&Down/Info.plist";
+				INFOPLIST_FILE = Statbar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gjiazhe.Up-Down";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bsdelf.statbar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Up&Down/Up&Down-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Statbar/Statbar-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
 			};
@@ -343,7 +343,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		430175E01CF2CA030051D8C9 /* Build configuration list for PBXProject "Up&Down" */ = {
+		430175E01CF2CA030051D8C9 /* Build configuration list for PBXProject "statbar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				430175F21CF2CA030051D8C9 /* Debug */,
@@ -352,7 +352,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		430175F41CF2CA030051D8C9 /* Build configuration list for PBXNativeTarget "Up&Down" */ = {
+		430175F41CF2CA030051D8C9 /* Build configuration list for PBXNativeTarget "Statbar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				430175F51CF2CA030051D8C9 /* Debug */,

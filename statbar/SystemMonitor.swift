@@ -1,6 +1,6 @@
 //
 //  MonitorTask.swift
-//  Up&Down
+//  Statbar
 //
 //  Copyright © 2017 bsdelf. All rights reserved.
 //  Copyright © 2016 郭佳哲. All rights reserved.
@@ -30,11 +30,11 @@ open class SystemMonitor: NSObject {
     }
     
     @objc func startUpdateTimer() {
-        Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updateNetWorkData), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updateNetworkStat), userInfo: nil, repeats: true)
         RunLoop.current.run()
     }
     
-    @objc func updateNetWorkData() {
+    @objc func updateNetworkStat() {
         do {
             let coreTemp = try SMCKit.temperature(TemperatureSensors.CPU_0_PROXIMITY.code)
             let fanSpeed = try SMCKit.fanCurrentSpeed(0)
