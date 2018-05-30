@@ -72,13 +72,15 @@ open class StatusItemView: NSControl {
         coreTempString.draw(at: NSMakePoint(bounds.width - coreTempRect.width - 5, 10))
         
 
-        let upRateString = NSAttributedString(string: upRate+" ↑", attributes: fontAttributes)
+        let upRateString = NSAttributedString(string: upRate + " ↗", attributes: fontAttributes)
         let upRateRect = upRateString.boundingRect(with: NSSize(width: 100, height: 100), options: NSString.DrawingOptions.usesLineFragmentOrigin)
-        upRateString.draw(at: NSMakePoint(bounds.width - upRateRect.width - 40 - 5, 0))
+        //upRateString.draw(at: NSMakePoint(bounds.width - upRateRect.width - 40 - 5, 0))
+        upRateString.draw(at: NSMakePoint(bounds.width - upRateRect.width - 40 - 5, 10))
         
-        let downRateString = NSAttributedString(string: downRate+" ↓", attributes: fontAttributes)
+        let downRateString = NSAttributedString(string: downRate + " ↙", attributes: fontAttributes)
         let downRateRect = downRateString.boundingRect(with: NSSize(width: 100, height: 100), options: NSString.DrawingOptions.usesLineFragmentOrigin)
-        downRateString.draw(at: NSMakePoint(bounds.width - downRateRect.width - 40 - 5, 10))
+        //downRateString.draw(at: NSMakePoint(bounds.width - downRateRect.width - 40 - 5, 10))
+        downRateString.draw(at: NSMakePoint(bounds.width - downRateRect.width - 40 - 5, 0))
     }
     
     open func setRateData(up: Double, down: Double, coreTemp: Int, fanSpeed: Int) {
