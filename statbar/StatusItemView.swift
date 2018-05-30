@@ -11,9 +11,7 @@ import Foundation
 
 extension String {
     func leftPadding(toLength: Int, withPad: String = " ") -> String {
-        
         guard toLength > self.count else { return self }
-        
         let padding = String(repeating: withPad, count: toLength - self.count)
         return padding + self
     }
@@ -39,14 +37,13 @@ open class StatusItemView: NSControl {
     
     init(statusItem aStatusItem: NSStatusItem, menu aMenu: NSMenu) {
         statusItem = aStatusItem
-        super.init(frame: NSMakeRect(0, 0, statusItem.length, 30))
+        super.init(frame: NSMakeRect(0, 0, statusItem.length, aMenu.menuBarHeight))
         menu = aMenu
         menu?.delegate = self
         
         darkMode = SystemThemeChangeHelper.isCurrentDark()
         
         SystemThemeChangeHelper.addRespond(target: self, selector: #selector(changeMode))
-        
     }
     
     required public init?(coder: NSCoder) {
@@ -56,31 +53,38 @@ open class StatusItemView: NSControl {
     open override func draw(_ dirtyRect: NSRect) {
         statusItem.drawStatusBarBackground(in: dirtyRect, withHighlight: mouseDown)
         
-        
         fontColor = (darkMode||mouseDown) ? NSColor.white : NSColor.black
         let fontAttributes = [
             NSAttributedStringKey.font: NSFont.monospacedDigitSystemFont(ofSize: fontSize, weight: NSFont.Weight.regular),
             NSAttributedStringKey.foregroundColor: fontColor
             ] as [NSAttributedStringKey : Any]
         
-        let fanSpeedString = NSAttributedString(string: fanSpeedStr+" ♨", attributes: fontAttributes)
-        let fanSpeedRect = fanSpeedString.boundingRect(with: NSSize(width: 100, height: 100), options: NSString.DrawingOptions.usesLineFragmentOrigin)
-        fanSpeedString.draw(at: NSMakePoint(bounds.width - fanSpeedRect.width - 5, 0))
+        let rectSize = NSSize(width: 80, height: 20)
         
-        let coreTempString = NSAttributedString(string: coreTempStr+" ℃", attributes: fontAttributes)
-        let coreTempRect = coreTempString.boundingRect(with: NSSize(width: 100, height: 100), options: NSString.DrawingOptions.usesLineFragmentOrigin)
-        coreTempString.draw(at: NSMakePoint(bounds.width - coreTempRect.width - 5, 10))
+        let strs = [
+            upRate + " ↗",
+            downRate + " ↙",
+            coreTempStr + " ℃",
+            fanSpeedStr + " ♨",
+        ]
         
-
-        let upRateString = NSAttributedString(string: upRate + " ↗", attributes: fontAttributes)
-        let upRateRect = upRateString.boundingRect(with: NSSize(width: 100, height: 100), options: NSString.DrawingOptions.usesLineFragmentOrigin)
-        //upRateString.draw(at: NSMakePoint(bounds.width - upRateRect.width - 40 - 5, 0))
-        upRateString.draw(at: NSMakePoint(bounds.width - upRateRect.width - 40 - 5, 10))
+        // 5 | 40 | 5 | 40 |
         
-        let downRateString = NSAttributedString(string: downRate + " ↙", attributes: fontAttributes)
-        let downRateRect = downRateString.boundingRect(with: NSSize(width: 100, height: 100), options: NSString.DrawingOptions.usesLineFragmentOrigin)
-        //downRateString.draw(at: NSMakePoint(bounds.width - downRateRect.width - 40 - 5, 10))
-        downRateString.draw(at: NSMakePoint(bounds.width - downRateRect.width - 40 - 5, 0))
+        var xoffset = bounds.width;
+        outerLoop:
+        for col in (0 ..< ((strs.count + 1) / 2)).reversed() {
+            for row in (0 ..< 2).reversed() {
+                let i = col * 2 + row - strs.count & 1
+                if i < 0 {
+                    break outerLoop
+                }
+                let yoffset = CGFloat(1 - row) * 10.0
+                let nsStr = NSAttributedString(string: strs[i], attributes: fontAttributes)
+                let rect = nsStr.boundingRect(with: rectSize, options: NSString.DrawingOptions.usesLineFragmentOrigin)
+                nsStr.draw(at: NSMakePoint(xoffset - rect.width - 5, yoffset))
+            }
+            xoffset -= 40;
+        }
     }
     
     open func setRateData(up: Double, down: Double, coreTemp: Int, fanSpeed: Int) {
