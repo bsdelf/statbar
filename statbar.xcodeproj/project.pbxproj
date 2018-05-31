@@ -95,7 +95,7 @@
 		430175DC1CF2CA030051D8C9 = {
 			isa = PBXGroup;
 			children = (
-				430175E71CF2CA030051D8C9 /* statbar */,
+				430175E71CF2CA030051D8C9 /* Statbar */,
 				2FCAE75B20BFB9D500FF06BE /* StatbarHelper */,
 				430175E61CF2CA030051D8C9 /* Products */,
 			);
@@ -110,7 +110,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		430175E71CF2CA030051D8C9 /* statbar */ = {
+		430175E71CF2CA030051D8C9 /* Statbar */ = {
 			isa = PBXGroup;
 			children = (
 				F7A850381F1E473D00560E2C /* SMCObject.swift */,
@@ -126,7 +126,7 @@
 				436AB3971D0FD81600D40F37 /* Localizable.strings */,
 				F7A850331F1E2CAB00560E2C /* Statbar-Bridging-Header.h */,
 			);
-			path = statbar;
+			path = Statbar;
 			sourceTree = "<group>";
 		};
 		430175F71CF2CB740051D8C9 /* Helpers */ = {
