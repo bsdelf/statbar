@@ -73,15 +73,16 @@ open class StatusItemView: NSControl {
         var xoffset = bounds.width;
         outerLoop:
         for col in (0 ..< ((strs.count + 1) / 2)).reversed() {
+            var yoffset = CGFloat(0);
             for row in (0 ..< 2).reversed() {
                 let i = col * 2 + row - strs.count & 1
                 if i < 0 {
                     break outerLoop
                 }
-                let yoffset = CGFloat(1 - row) * 10.0
                 let nsStr = NSAttributedString(string: strs[i], attributes: fontAttributes)
                 let rect = nsStr.boundingRect(with: rectSize, options: NSString.DrawingOptions.usesLineFragmentOrigin)
                 nsStr.draw(at: NSMakePoint(xoffset - rect.width - 5, yoffset))
+                yoffset += 10;
             }
             xoffset -= 40;
         }
