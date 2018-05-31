@@ -16,8 +16,8 @@ open class SystemMonitor: NSObject {
     
     let interval: Double = 1
     
-    var _ibytes: Double = 0;
-    var _obytes: Double = 0;
+    var lastInBytes: Double = 0;
+    var lastOutBytes: Double = 0;
     
     func start() {
         do {
@@ -30,26 +30,29 @@ open class SystemMonitor: NSObject {
     }
     
     @objc func startUpdateTimer() {
-        Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updateNetworkStat), userInfo: nil, repeats: true)
+        Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updateStat), userInfo: nil, repeats: true)
         RunLoop.current.run()
     }
     
-    @objc func updateNetworkStat() {
+    @objc func updateStat() {
         do {
             let coreTemp = try SMCKit.temperature(TemperatureSensors.CPU_0_PROXIMITY.code)
             let fanSpeed = try SMCKit.fanCurrentSpeed(0)
         
-        
-            var ibytes: CDouble = 0;
-            var obytes: CDouble = 0;
-            let ok = readNetIO(&ibytes, &obytes);
-            if (ok) {
-                if (_ibytes > 0 && _obytes > 0) {
-                    statusItemView.setRateData(up: obytes - _obytes, down: ibytes - _ibytes, coreTemp: Int(coreTemp), fanSpeed: fanSpeed);
-                }
-                _ibytes = ibytes;
-                _obytes = obytes;
+            var inBytes: CDouble = 0;
+            var outBytes: CDouble = 0;
+            if !readNetworkStat(&inBytes, &outBytes) {
+                return
             }
+            
+            if lastInBytes > 0 && lastOutBytes > 0 {
+                let upSpeed = (outBytes - lastOutBytes) / interval
+                let downSpeed = (inBytes - lastInBytes) / interval
+                statusItemView.setRateData(up: upSpeed, down: downSpeed, coreTemp: Int(coreTemp), fanSpeed: fanSpeed);
+            }
+            
+            lastInBytes = inBytes;
+            lastOutBytes = outBytes;
         } catch _ {
             
         }

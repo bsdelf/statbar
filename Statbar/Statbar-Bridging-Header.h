@@ -6,4 +6,4 @@
 #include <stdbool.h>
 #include <inttypes.h>
 
-bool readNetIO(double* ibytes, double* obytes);
+bool readNetworkStat(double* ibytes, double* obytes);

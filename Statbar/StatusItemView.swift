@@ -24,7 +24,6 @@ open class StatusItemView: NSControl {
     static let TB:Double = GB*1024
     
     var fontSize:CGFloat = 9
-    var fontColor = NSColor.black
     var darkMode = false
     var mouseDown = false
     var statusItem:NSStatusItem
@@ -53,11 +52,11 @@ open class StatusItemView: NSControl {
     open override func draw(_ dirtyRect: NSRect) {
         statusItem.drawStatusBarBackground(in: dirtyRect, withHighlight: mouseDown)
         
-        fontColor = (darkMode||mouseDown) ? NSColor.white : NSColor.black
+        let fontColor = (darkMode || mouseDown) ? NSColor.white : NSColor.black
         let fontAttributes = [
             NSAttributedStringKey.font: NSFont.monospacedDigitSystemFont(ofSize: fontSize, weight: NSFont.Weight.regular),
             NSAttributedStringKey.foregroundColor: fontColor
-            ] as [NSAttributedStringKey : Any]
+        ] as [NSAttributedStringKey : Any]
         
         let rectSize = NSSize(width: 80, height: 20)
         

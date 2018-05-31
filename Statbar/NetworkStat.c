@@ -10,7 +10,7 @@
 #include <net/if.h>
 #include <net/route.h>
 
-bool readNetIO(double* ibytes, double* obytes) {
+bool readNetworkStat(double* ibytes, double* obytes) {
     assert(ibytes);
     assert(obytes);
 
