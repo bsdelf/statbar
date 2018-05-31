@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu = NSMenu()
         autoLaunchMenu = NSMenuItem()
         autoLaunchMenu.title = NSLocalizedString("Start at login", comment: "") 
-        autoLaunchMenu.state = NSControl.StateValue(rawValue: AutoLaunchHelper.isLaunchWhenLogin() ? 1 : 0)
+        autoLaunchMenu.state = NSControl.StateValue(rawValue: AutoLaunchHelper.isLoginStartEnabled() ? 1 : 0)
         autoLaunchMenu.action = #selector(menuItemAutoLaunchClick)
         menu.addItem(autoLaunchMenu)
         menu.addItem(NSMenuItem.separator())
@@ -62,7 +62,7 @@ extension AppDelegate {
     }
     
     @objc func menuItemAutoLaunchClick() {
-        AutoLaunchHelper.toggleLaunchWhenLogin()
-        autoLaunchMenu.state = NSControl.StateValue(rawValue: AutoLaunchHelper.isLaunchWhenLogin() ? 1 : 0)
+        AutoLaunchHelper.toggleLoginStart()
+        autoLaunchMenu.state = NSControl.StateValue(rawValue: AutoLaunchHelper.isLoginStartEnabled() ? 1 : 0)
     }
 }

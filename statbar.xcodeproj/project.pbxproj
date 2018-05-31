@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2FCAE75D20BFB9D500FF06BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAE75C20BFB9D500FF06BE /* AppDelegate.swift */; };
+		2FCAE76120BFB9D600FF06BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FCAE76020BFB9D600FF06BE /* Assets.xcassets */; };
+		2FCAE76420BFB9D600FF06BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FCAE76220BFB9D600FF06BE /* Main.storyboard */; };
+		2FCAE76B20BFBB0100FF06BE /* StatbarHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = 2FCAE75A20BFB9D500FF06BE /* StatbarHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		430175E91CF2CA030051D8C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430175E81CF2CA030051D8C9 /* AppDelegate.swift */; };
 		430175ED1CF2CA030051D8C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 430175EC1CF2CA030051D8C9 /* Assets.xcassets */; };
 		430175F01CF2CA030051D8C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 430175EE1CF2CA030051D8C9 /* Main.storyboard */; };
@@ -20,7 +24,26 @@
 		F7A850391F1E473D00560E2C /* SMCObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A850381F1E473D00560E2C /* SMCObject.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		2FCAE76A20BFBAF700FF06BE /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				2FCAE76B20BFBB0100FF06BE /* StatbarHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		2FCAE75A20BFB9D500FF06BE /* StatbarHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatbarHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2FCAE75C20BFB9D500FF06BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2FCAE76020BFB9D600FF06BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2FCAE76320BFB9D600FF06BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2FCAE76520BFB9D600FF06BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2FCAE76620BFB9D600FF06BE /* StatbarHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = StatbarHelper.entitlements; sourceTree = "<group>"; };
 		430175E51CF2CA030051D8C9 /* Statbar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Statbar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		430175E81CF2CA030051D8C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		430175EC1CF2CA030051D8C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +63,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		2FCAE75720BFB9D500FF06BE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		430175E21CF2CA030051D8C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -50,10 +80,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2FCAE75B20BFB9D500FF06BE /* StatbarHelper */ = {
+			isa = PBXGroup;
+			children = (
+				2FCAE75C20BFB9D500FF06BE /* AppDelegate.swift */,
+				2FCAE76020BFB9D600FF06BE /* Assets.xcassets */,
+				2FCAE76220BFB9D600FF06BE /* Main.storyboard */,
+				2FCAE76520BFB9D600FF06BE /* Info.plist */,
+				2FCAE76620BFB9D600FF06BE /* StatbarHelper.entitlements */,
+			);
+			path = StatbarHelper;
+			sourceTree = "<group>";
+		};
 		430175DC1CF2CA030051D8C9 = {
 			isa = PBXGroup;
 			children = (
 				430175E71CF2CA030051D8C9 /* statbar */,
+				2FCAE75B20BFB9D500FF06BE /* StatbarHelper */,
 				430175E61CF2CA030051D8C9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				430175E51CF2CA030051D8C9 /* Statbar.app */,
+				2FCAE75A20BFB9D500FF06BE /* StatbarHelper.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -97,6 +141,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		2FCAE75920BFB9D500FF06BE /* StatbarHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2FCAE76920BFB9D600FF06BE /* Build configuration list for PBXNativeTarget "StatbarHelper" */;
+			buildPhases = (
+				2FCAE75620BFB9D500FF06BE /* Sources */,
+				2FCAE75720BFB9D500FF06BE /* Frameworks */,
+				2FCAE75820BFB9D500FF06BE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StatbarHelper;
+			productName = StatbarHelper;
+			productReference = 2FCAE75A20BFB9D500FF06BE /* StatbarHelper.app */;
+			productType = "com.apple.product-type.application";
+		};
 		430175E41CF2CA030051D8C9 /* Statbar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 430175F41CF2CA030051D8C9 /* Build configuration list for PBXNativeTarget "Statbar" */;
@@ -104,6 +165,7 @@
 				430175E11CF2CA030051D8C9 /* Sources */,
 				430175E21CF2CA030051D8C9 /* Frameworks */,
 				430175E31CF2CA030051D8C9 /* Resources */,
+				2FCAE76A20BFBAF700FF06BE /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -120,10 +182,14 @@
 		430175DD1CF2CA030051D8C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0730;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
-				ORGANIZATIONNAME = "bsdelf";
+				ORGANIZATIONNAME = bsdelf;
 				TargetAttributes = {
+					2FCAE75920BFB9D500FF06BE = {
+						CreatedOnToolsVersion = 9.4;
+						ProvisioningStyle = Manual;
+					};
 					430175E41CF2CA030051D8C9 = {
 						CreatedOnToolsVersion = 7.3.1;
 						LastSwiftMigration = 0930;
@@ -145,11 +211,21 @@
 			projectRoot = "";
 			targets = (
 				430175E41CF2CA030051D8C9 /* Statbar */,
+				2FCAE75920BFB9D500FF06BE /* StatbarHelper */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2FCAE75820BFB9D500FF06BE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FCAE76120BFB9D600FF06BE /* Assets.xcassets in Resources */,
+				2FCAE76420BFB9D600FF06BE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		430175E31CF2CA030051D8C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -163,6 +239,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2FCAE75620BFB9D500FF06BE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2FCAE75D20BFB9D500FF06BE /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		430175E11CF2CA030051D8C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -181,6 +265,14 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		2FCAE76220BFB9D600FF06BE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2FCAE76320BFB9D600FF06BE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
 		430175EE1CF2CA030051D8C9 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -202,6 +294,57 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2FCAE76720BFB9D600FF06BE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = StatbarHelper/StatbarHelper.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = StatbarHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bsdelf.StatbarHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		2FCAE76820BFB9D600FF06BE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = StatbarHelper/StatbarHelper.entitlements;
+				CODE_SIGN_STYLE = Manual;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = StatbarHelper/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bsdelf.StatbarHelper;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
 		430175F21CF2CA030051D8C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -315,8 +458,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Statbar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bsdelf.statbar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bsdelf.Statbar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Statbar/Statbar-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
@@ -332,8 +476,9 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Statbar/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.bsdelf.statbar;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bsdelf.Statbar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Statbar/Statbar-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
 				SWIFT_VERSION = 4.0;
@@ -343,6 +488,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2FCAE76920BFB9D600FF06BE /* Build configuration list for PBXNativeTarget "StatbarHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2FCAE76720BFB9D600FF06BE /* Debug */,
+				2FCAE76820BFB9D600FF06BE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		430175E01CF2CA030051D8C9 /* Build configuration list for PBXProject "statbar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
