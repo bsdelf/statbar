@@ -18,14 +18,13 @@ extension String {
 }
 
 open class StatusItemView: NSControl {
-    var fontSize:CGFloat = 9
+    let fontSize: CGFloat = 9
     var darkMode = false
     var mouseDown = false
-    var statusItem:NSStatusItem
-    
-    var upRate = "- - KB/s"
-    var downRate = "- - KB/s"
-    
+    var statusItem: NSStatusItem
+
+    var upRateStr = "- - KB/s"
+    var downRateStr = "- - KB/s"
     var fanSpeedStr = "- -"
     var coreTempStr = "- -"
     
@@ -34,9 +33,7 @@ open class StatusItemView: NSControl {
         super.init(frame: NSMakeRect(0, 0, statusItem.length, aMenu.menuBarHeight))
         menu = aMenu
         menu?.delegate = self
-        
         darkMode = SystemThemeChangeHelper.isCurrentDark()
-        
         SystemThemeChangeHelper.addRespond(target: self, selector: #selector(changeMode))
     }
     
@@ -51,13 +48,13 @@ open class StatusItemView: NSControl {
         let fontAttributes = [
             NSAttributedStringKey.font: NSFont.monospacedDigitSystemFont(ofSize: fontSize, weight: NSFont.Weight.regular),
             NSAttributedStringKey.foregroundColor: fontColor
-        ] as [NSAttributedStringKey : Any]
+        ] as [NSAttributedStringKey: Any]
         
         let rectSize = NSSize(width: 80, height: 20)
         
         let strs = [
-            upRate + " ↗",
-            downRate + " ↙",
+            upRateStr + " ↗",
+            downRateStr + " ↙",
             coreTempStr + " ℃",
             fanSpeedStr + " ♨",
         ]
@@ -82,15 +79,11 @@ open class StatusItemView: NSControl {
         }
     }
     
-    open func setRateData(up: Double, down: Double, coreTemp: Int, fanSpeed: Int) {
-        let _upRate = formatRateData(up)
-        let _downRate = formatRateData(down)
-        upRate = addBlank(str: _upRate, toLength: 11)
-        downRate = addBlank(str: _downRate, toLength: 11)
-            
+    open func updateMetrics(up: Double, down: Double, coreTemp: Int, fanSpeed: Int) {
+        upRateStr = addBlank(str: formatRateData(up), toLength: 11)
+        downRateStr = addBlank(str: formatRateData(down), toLength: 11)
         coreTempStr = addBlank(str: "\(coreTemp)", toLength: 4)
-        fanSpeedStr = addBlank(str: fanSpeed == 0 ? "0" : "\(fanSpeed)", toLength: 4)
-            
+        fanSpeedStr = addBlank(str: fanSpeed < 1 ? "0" : "\(fanSpeed)", toLength: 4)
         setNeedsDisplay()
     }
     
@@ -99,12 +92,12 @@ open class StatusItemView: NSControl {
     }
     
     func formatRateData(_ data:Double) -> String {
-        let KB:Double = 1024
-        let MB:Double = KB * 1024
-        let GB:Double = MB * 1024
-        let TB:Double = GB * 1024
+        let KB: Double = 1024
+        let MB: Double = KB * 1024
+        let GB: Double = MB * 1024
+        let TB: Double = GB * 1024
         
-        var result:Double
+        var result: Double
         var unit: String
         if data < KB / 100 {
             result = 0

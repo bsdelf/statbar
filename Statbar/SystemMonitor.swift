@@ -47,7 +47,7 @@ open class SystemMonitor: NSObject {
             if lastInBytes > 0 && lastOutBytes > 0 {
                 let upSpeed = (outBytes - lastOutBytes) / interval
                 let downSpeed = (inBytes - lastInBytes) / interval
-                statusItemView.setRateData(up: upSpeed, down: downSpeed, coreTemp: Int(coreTemp), fanSpeed: fanSpeed);
+                statusItemView.updateMetrics(up: upSpeed, down: downSpeed, coreTemp: Int(coreTemp), fanSpeed: fanSpeed);
             }
             lastInBytes = inBytes;
             lastOutBytes = outBytes;
