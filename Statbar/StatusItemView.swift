@@ -18,11 +18,6 @@ extension String {
 }
 
 open class StatusItemView: NSControl {
-    static let KB:Double = 1024
-    static let MB:Double = KB*1024
-    static let GB:Double = MB*1024
-    static let TB:Double = GB*1024
-    
     var fontSize:CGFloat = 9
     var darkMode = false
     var mouseDown = false
@@ -104,43 +99,40 @@ open class StatusItemView: NSControl {
     }
     
     func formatRateData(_ data:Double) -> String {
+        let KB:Double = 1024
+        let MB:Double = KB * 1024
+        let GB:Double = MB * 1024
+        let TB:Double = GB * 1024
+        
         var result:Double
         var unit: String
-        
-        if data < StatusItemView.KB/100 {
+        if data < KB / 100 {
             result = 0
             return "0.00 KB/s"
-        }
-            
-        else if data < StatusItemView.MB{
-            result = data/StatusItemView.KB
+        } else if data < MB {
+            result = data / KB
             unit = " KB/s"
-        }
-            
-        else if data < StatusItemView.GB {
-            result = data/StatusItemView.MB
+        } else if data < GB {
+            result = data / MB
             unit = " MB/s"
-        }
-            
-        else if data < StatusItemView.TB {
-            result = data/StatusItemView.GB
+        } else if data < TB {
+            result = data / GB
             unit = " GB/s"
-        }
-            
-        else {
+        } else {
             result = 1023
             unit = " GB/s"
         }
         
+        var format: String
         if result < 100 {
-            return String(format: "%0.2f", result) + unit
+            format = "%0.2f"
+        } else if result < 999 {
+            format = "%0.1f"
+        } else {
+            format = "%0.0f"
         }
-        else if result < 999 {
-            return String(format: "%0.1f", result) + unit
-        }
-        else {
-            return String(format: "%0.0f", result) + unit
-        }
+        
+        return String(format: format, result) + unit
     }
     
     @objc func changeMode() {
