@@ -6,4 +6,8 @@
 #include <stdbool.h>
 #include <inttypes.h>
 
-bool readNetworkStat(double* ibytes, double* obytes);
+void* CreateNetworkStat();
+void DestroyNetworkStat(void* ptr);
+bool NetworkStatUpdate(void* ptr);
+double NetworkStatGetInBytes(void* ptr);
+double NetworkStatGetOutBytes(void* ptr);

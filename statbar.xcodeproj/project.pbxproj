@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F4BD23B20C121F70087B669 /* NetworkStat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BD23920C121F10087B669 /* NetworkStat.cpp */; };
 		2FCAE75D20BFB9D500FF06BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAE75C20BFB9D500FF06BE /* AppDelegate.swift */; };
 		2FCAE76120BFB9D600FF06BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FCAE76020BFB9D600FF06BE /* Assets.xcassets */; };
 		2FCAE76420BFB9D600FF06BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FCAE76220BFB9D600FF06BE /* Main.storyboard */; };
@@ -19,7 +20,6 @@
 		430175FD1CF2CC0D0051D8C9 /* StatusItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 430175FC1CF2CC0D0051D8C9 /* StatusItemView.swift */; };
 		436AB3951D0FD81600D40F37 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 436AB3971D0FD81600D40F37 /* Localizable.strings */; };
 		4382318E1D01BCD40090FAC9 /* SystemMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4382318D1D01BCD40090FAC9 /* SystemMonitor.swift */; };
-		F7A850351F1E2CAC00560E2C /* NetworkStat.c in Sources */ = {isa = PBXBuildFile; fileRef = F7A850341F1E2CAC00560E2C /* NetworkStat.c */; };
 		F7A850371F1E473600560E2C /* SMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A850361F1E473600560E2C /* SMC.swift */; };
 		F7A850391F1E473D00560E2C /* SMCObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A850381F1E473D00560E2C /* SMCObject.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +38,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2F4BD23920C121F10087B669 /* NetworkStat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkStat.cpp; sourceTree = "<group>"; };
+		2F4BD23A20C121F10087B669 /* NetworkStat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NetworkStat.hpp; sourceTree = "<group>"; };
 		2FCAE75A20BFB9D500FF06BE /* StatbarHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatbarHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FCAE75C20BFB9D500FF06BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FCAE76020BFB9D600FF06BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -57,7 +59,6 @@
 		436AB39A1D0FDD8B00D40F37 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4382318D1D01BCD40090FAC9 /* SystemMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemMonitor.swift; sourceTree = "<group>"; };
 		F7A850331F1E2CAB00560E2C /* Statbar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Statbar-Bridging-Header.h"; sourceTree = "<group>"; };
-		F7A850341F1E2CAC00560E2C /* NetworkStat.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = NetworkStat.c; sourceTree = "<group>"; };
 		F7A850361F1E473600560E2C /* SMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMC.swift; sourceTree = "<group>"; };
 		F7A850381F1E473D00560E2C /* SMCObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMCObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,9 +114,10 @@
 		430175E71CF2CA030051D8C9 /* Statbar */ = {
 			isa = PBXGroup;
 			children = (
+				2F4BD23920C121F10087B669 /* NetworkStat.cpp */,
+				2F4BD23A20C121F10087B669 /* NetworkStat.hpp */,
 				F7A850381F1E473D00560E2C /* SMCObject.swift */,
 				F7A850361F1E473600560E2C /* SMC.swift */,
-				F7A850341F1E2CAC00560E2C /* NetworkStat.c */,
 				430175F71CF2CB740051D8C9 /* Helpers */,
 				430175E81CF2CA030051D8C9 /* AppDelegate.swift */,
 				430175FC1CF2CC0D0051D8C9 /* StatusItemView.swift */,
@@ -256,7 +258,7 @@
 				430175E91CF2CA030051D8C9 /* AppDelegate.swift in Sources */,
 				430175FD1CF2CC0D0051D8C9 /* StatusItemView.swift in Sources */,
 				F7A850391F1E473D00560E2C /* SMCObject.swift in Sources */,
-				F7A850351F1E2CAC00560E2C /* NetworkStat.c in Sources */,
+				2F4BD23B20C121F70087B669 /* NetworkStat.cpp in Sources */,
 				430175F91CF2CBA30051D8C9 /* AutoLaunchHelper.swift in Sources */,
 				430175FB1CF2CBCF0051D8C9 /* SystemThemeChangeHelper.swift in Sources */,
 			);
@@ -457,6 +459,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Statbar/Info.plist;
@@ -475,6 +478,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_CXX_LANGUAGE_STANDARD = "c++14";
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Statbar/Info.plist;

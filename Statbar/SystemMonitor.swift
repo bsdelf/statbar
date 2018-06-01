@@ -10,14 +10,19 @@ import Foundation
 
 open class SystemMonitor: NSObject {
     let statusItemView: StatusItemView
+    let networkstat: UnsafeMutableRawPointer
+    let interval: Double = 1
+    var lastInBytes: Double = 0
+    var lastOutBytes: Double = 0
+    
     init(statusItemView view: StatusItemView) {
         statusItemView = view
+        networkstat = UnsafeMutableRawPointer(CreateNetworkStat())
     }
     
-    let interval: Double = 1
-    
-    var lastInBytes: Double = 0;
-    var lastOutBytes: Double = 0;
+    deinit {
+        DestroyNetworkStat(networkstat);
+    }
     
     func start() {
         do {
@@ -26,12 +31,7 @@ open class SystemMonitor: NSObject {
             
         }
 
-        Thread(target: self, selector: #selector(startUpdateTimer), object: nil).start()
-    }
-    
-    @objc func startUpdateTimer() {
         Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updateStat), userInfo: nil, repeats: true)
-        RunLoop.current.run()
     }
     
     @objc func updateStat() {
@@ -39,18 +39,16 @@ open class SystemMonitor: NSObject {
             let coreTemp = try SMCKit.temperature(TemperatureSensors.CPU_0_PROXIMITY.code)
             let fanSpeed = try SMCKit.fanCurrentSpeed(0)
         
-            var inBytes: CDouble = 0;
-            var outBytes: CDouble = 0;
-            if !readNetworkStat(&inBytes, &outBytes) {
-                return
+            if !NetworkStatUpdate(networkstat) {
+                return;
             }
-            
+            let inBytes = NetworkStatGetInBytes(networkstat);
+            let outBytes = NetworkStatGetOutBytes(networkstat);
             if lastInBytes > 0 && lastOutBytes > 0 {
                 let upSpeed = (outBytes - lastOutBytes) / interval
                 let downSpeed = (inBytes - lastInBytes) / interval
                 statusItemView.setRateData(up: upSpeed, down: downSpeed, coreTemp: Int(coreTemp), fanSpeed: fanSpeed);
             }
-            
             lastInBytes = inBytes;
             lastOutBytes = outBytes;
         } catch _ {
