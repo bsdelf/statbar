@@ -35,24 +35,22 @@ open class SystemMonitor: NSObject {
     }
     
     @objc func updateStat() {
-        do {
-            let coreTemp = try SMCKit.temperature(TemperatureSensors.CPU_0_PROXIMITY.code)
-            let fanSpeed = try SMCKit.fanCurrentSpeed(0)
-        
-            if !NetworkStatUpdate(networkstat) {
-                return;
-            }
+        let coreTemp = try? Int(SMCKit.temperature(TemperatureSensors.CPU_0_PROXIMITY.code))
+        let fanSpeed = try? SMCKit.fanCurrentSpeed(0)
+
+        var upSpeed: Double?
+        var downSpeed: Double?
+        if NetworkStatUpdate(networkstat) {
             let inBytes = NetworkStatGetInBytes(networkstat);
             let outBytes = NetworkStatGetOutBytes(networkstat);
             if lastInBytes > 0 && lastOutBytes > 0 {
-                let upSpeed = (outBytes - lastOutBytes) / interval
-                let downSpeed = (inBytes - lastInBytes) / interval
-                statusItemView.updateMetrics(up: upSpeed, down: downSpeed, coreTemp: Int(coreTemp), fanSpeed: fanSpeed);
+                upSpeed = (outBytes - lastOutBytes) / interval
+                downSpeed = (inBytes - lastInBytes) / interval
             }
             lastInBytes = inBytes;
             lastOutBytes = outBytes;
-        } catch _ {
-            
         }
+
+        statusItemView.updateMetrics(up: upSpeed, down: downSpeed, coreTemp: coreTemp, fanSpeed: fanSpeed);
     }
 }

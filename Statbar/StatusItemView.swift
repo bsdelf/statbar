@@ -79,11 +79,19 @@ open class StatusItemView: NSControl {
         }
     }
     
-    open func updateMetrics(up: Double, down: Double, coreTemp: Int, fanSpeed: Int) {
-        upRateStr = addBlank(str: formatRateData(up), toLength: 11)
-        downRateStr = addBlank(str: formatRateData(down), toLength: 11)
-        coreTempStr = addBlank(str: "\(coreTemp)", toLength: 4)
-        fanSpeedStr = addBlank(str: fanSpeed < 1 ? "0" : "\(fanSpeed)", toLength: 4)
+    open func updateMetrics(up: Double?, down: Double?, coreTemp: Int?, fanSpeed: Int?) {
+        if let val = up {
+            upRateStr = addBlank(str: formatRateData(val), toLength: 11)
+        }
+        if let val = down {
+            downRateStr = addBlank(str: formatRateData(val), toLength: 11)
+        }
+        if let val = coreTemp {
+            coreTempStr = addBlank(str: "\(val)", toLength: 4)
+        }
+        if let val = fanSpeed {
+            fanSpeedStr = addBlank(str: val < 1 ? "0" : "\(val)", toLength: 4)
+        }
         setNeedsDisplay()
     }
     
