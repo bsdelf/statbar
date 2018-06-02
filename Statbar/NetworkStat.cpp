@@ -86,8 +86,4 @@ extern "C" {
         auto self = static_cast<NetworkStat*>(ptr);
         return self->GetOutBytes();
     }
-    
-    double HelloWorld() {
-        return 100;
-    }
 }
