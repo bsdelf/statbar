@@ -6,7 +6,7 @@ Statbar is a menu bar app for macOS  that monitors following metrics:
 - CPU temperature.
 - Fan speed.
 
-![Screenshot](screenshot/3.png)
+![Screenshot](screenshot/1.png)
 
 This app is based on following projects:
 
