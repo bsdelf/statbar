@@ -91,7 +91,7 @@ extension Double {
 public extension FourCharCode {
 
     init(fromString str: String) {
-        precondition(str.characters.count == 4)
+        precondition(str.count == 4)
 
         self = str.utf8.reduce(0) { sum, character in
             return sum << 8 | UInt32(character)

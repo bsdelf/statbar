@@ -21,7 +21,6 @@
 		436AB3951D0FD81600D40F37 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 436AB3971D0FD81600D40F37 /* Localizable.strings */; };
 		4382318E1D01BCD40090FAC9 /* SystemMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4382318D1D01BCD40090FAC9 /* SystemMonitor.swift */; };
 		F7A850371F1E473600560E2C /* SMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A850361F1E473600560E2C /* SMC.swift */; };
-		F7A850391F1E473D00560E2C /* SMCObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A850381F1E473D00560E2C /* SMCObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -60,7 +59,6 @@
 		4382318D1D01BCD40090FAC9 /* SystemMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemMonitor.swift; sourceTree = "<group>"; };
 		F7A850331F1E2CAB00560E2C /* Statbar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Statbar-Bridging-Header.h"; sourceTree = "<group>"; };
 		F7A850361F1E473600560E2C /* SMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMC.swift; sourceTree = "<group>"; };
-		F7A850381F1E473D00560E2C /* SMCObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMCObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +114,6 @@
 			children = (
 				2F4BD23920C121F10087B669 /* NetworkStat.cpp */,
 				2F4BD23A20C121F10087B669 /* NetworkStat.hpp */,
-				F7A850381F1E473D00560E2C /* SMCObject.swift */,
 				F7A850361F1E473600560E2C /* SMC.swift */,
 				430175F71CF2CB740051D8C9 /* Helpers */,
 				430175E81CF2CA030051D8C9 /* AppDelegate.swift */,
@@ -190,17 +187,18 @@
 				TargetAttributes = {
 					2FCAE75920BFB9D500FF06BE = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1130;
 						ProvisioningStyle = Manual;
 					};
 					430175E41CF2CA030051D8C9 = {
 						CreatedOnToolsVersion = 7.3.1;
-						LastSwiftMigration = 0930;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
 			buildConfigurationList = 430175E01CF2CA030051D8C9 /* Build configuration list for PBXProject "statbar" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
@@ -257,7 +255,6 @@
 				4382318E1D01BCD40090FAC9 /* SystemMonitor.swift in Sources */,
 				430175E91CF2CA030051D8C9 /* AppDelegate.swift in Sources */,
 				430175FD1CF2CC0D0051D8C9 /* StatusItemView.swift in Sources */,
-				F7A850391F1E473D00560E2C /* SMCObject.swift in Sources */,
 				2F4BD23B20C121F70087B669 /* NetworkStat.cpp in Sources */,
 				430175F91CF2CBA30051D8C9 /* AutoLaunchHelper.swift in Sources */,
 				430175FB1CF2CBCF0051D8C9 /* SystemThemeChangeHelper.swift in Sources */,
@@ -319,7 +316,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -345,7 +342,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -470,7 +467,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "Statbar/Statbar-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -489,7 +486,7 @@
 				SKIP_INSTALL = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "Statbar/Statbar-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = On;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};

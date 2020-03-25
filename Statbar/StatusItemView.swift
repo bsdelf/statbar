@@ -44,9 +44,9 @@ open class StatusItemView: NSControl {
         let darkMode = SystemThemeChangeHelper.isCurrentDark()
         let fontColor = (darkMode || mouseDown) ? NSColor.white : NSColor.black
         let fontAttributes = [
-            NSAttributedStringKey.font: NSFont.monospacedDigitSystemFont(ofSize: fontSize, weight: NSFont.Weight.regular),
-            NSAttributedStringKey.foregroundColor: fontColor
-        ] as [NSAttributedStringKey: Any]
+            NSAttributedString.Key.font: NSFont.monospacedDigitSystemFont(ofSize: fontSize, weight: NSFont.Weight.regular),
+            NSAttributedString.Key.foregroundColor: fontColor
+        ] as [NSAttributedString.Key: Any]
         
         let rectSize = NSSize(width: 80, height: 20)
         
