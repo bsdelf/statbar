@@ -1,8 +1,9 @@
 # Statbar![icon](screenshot/icon.png)
 
-Statbar is a menu bar app for macOS  that monitors following metrics:
+Statbar is a menu bar app for macOS which can be used to monitor following metrics:
 
-- Upload and download speeds.
+- Download speed.
+- Upload speed.
 - CPU temperature.
 - Fan speed.
 
