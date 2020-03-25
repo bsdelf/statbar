@@ -3,11 +3,8 @@
 //
 //  Copyright © 2017 bsdelf. All rights reserved.
 
-#include <stdbool.h>
-#include <inttypes.h>
+#include "NetworkStats.h"
 
-void* CreateNetworkStat();
-void DestroyNetworkStat(void* ptr);
-bool NetworkStatUpdate(void* ptr);
-double NetworkStatGetInBytes(void* ptr);
-double NetworkStatGetOutBytes(void* ptr);
+void* NetworkMonitorCreate();
+void NetworkMonitorDestroy(void* ptr);
+struct NetworkStats NetworkMonitorStats(void* ptr);

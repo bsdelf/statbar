@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2F4BD23B20C121F70087B669 /* NetworkStat.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BD23920C121F10087B669 /* NetworkStat.cpp */; };
+		2F4BD23B20C121F70087B669 /* NetworkMonitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F4BD23920C121F10087B669 /* NetworkMonitor.cpp */; };
 		2FCAE75D20BFB9D500FF06BE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FCAE75C20BFB9D500FF06BE /* AppDelegate.swift */; };
 		2FCAE76120BFB9D600FF06BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FCAE76020BFB9D600FF06BE /* Assets.xcassets */; };
 		2FCAE76420BFB9D600FF06BE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2FCAE76220BFB9D600FF06BE /* Main.storyboard */; };
@@ -21,6 +21,7 @@
 		436AB3951D0FD81600D40F37 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 436AB3971D0FD81600D40F37 /* Localizable.strings */; };
 		4382318E1D01BCD40090FAC9 /* SystemMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4382318D1D01BCD40090FAC9 /* SystemMonitor.swift */; };
 		F7A850371F1E473600560E2C /* SMC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A850361F1E473600560E2C /* SMC.swift */; };
+		F7C13AC9242B4CF4003641B3 /* Statbar-Bridging-Body.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7C13AC8242B4CF4003641B3 /* Statbar-Bridging-Body.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,8 +38,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		2F4BD23920C121F10087B669 /* NetworkStat.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkStat.cpp; sourceTree = "<group>"; };
-		2F4BD23A20C121F10087B669 /* NetworkStat.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NetworkStat.hpp; sourceTree = "<group>"; };
+		2F4BD23920C121F10087B669 /* NetworkMonitor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NetworkMonitor.cpp; sourceTree = "<group>"; };
+		2F4BD23A20C121F10087B669 /* NetworkMonitor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NetworkMonitor.hpp; sourceTree = "<group>"; };
 		2FCAE75A20BFB9D500FF06BE /* StatbarHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StatbarHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2FCAE75C20BFB9D500FF06BE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2FCAE76020BFB9D600FF06BE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +60,8 @@
 		4382318D1D01BCD40090FAC9 /* SystemMonitor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SystemMonitor.swift; sourceTree = "<group>"; };
 		F7A850331F1E2CAB00560E2C /* Statbar-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Statbar-Bridging-Header.h"; sourceTree = "<group>"; };
 		F7A850361F1E473600560E2C /* SMC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMC.swift; sourceTree = "<group>"; };
+		F7C13AC7242B4B64003641B3 /* NetworkStats.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkStats.h; sourceTree = "<group>"; };
+		F7C13AC8242B4CF4003641B3 /* Statbar-Bridging-Body.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = "Statbar-Bridging-Body.cpp"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,8 +115,9 @@
 		430175E71CF2CA030051D8C9 /* Statbar */ = {
 			isa = PBXGroup;
 			children = (
-				2F4BD23920C121F10087B669 /* NetworkStat.cpp */,
-				2F4BD23A20C121F10087B669 /* NetworkStat.hpp */,
+				F7C13AC7242B4B64003641B3 /* NetworkStats.h */,
+				2F4BD23920C121F10087B669 /* NetworkMonitor.cpp */,
+				2F4BD23A20C121F10087B669 /* NetworkMonitor.hpp */,
 				F7A850361F1E473600560E2C /* SMC.swift */,
 				430175F71CF2CB740051D8C9 /* Helpers */,
 				430175E81CF2CA030051D8C9 /* AppDelegate.swift */,
@@ -124,6 +128,7 @@
 				430175EC1CF2CA030051D8C9 /* Assets.xcassets */,
 				436AB3971D0FD81600D40F37 /* Localizable.strings */,
 				F7A850331F1E2CAB00560E2C /* Statbar-Bridging-Header.h */,
+				F7C13AC8242B4CF4003641B3 /* Statbar-Bridging-Body.cpp */,
 			);
 			path = Statbar;
 			sourceTree = "<group>";
@@ -255,9 +260,10 @@
 				4382318E1D01BCD40090FAC9 /* SystemMonitor.swift in Sources */,
 				430175E91CF2CA030051D8C9 /* AppDelegate.swift in Sources */,
 				430175FD1CF2CC0D0051D8C9 /* StatusItemView.swift in Sources */,
-				2F4BD23B20C121F70087B669 /* NetworkStat.cpp in Sources */,
+				2F4BD23B20C121F70087B669 /* NetworkMonitor.cpp in Sources */,
 				430175F91CF2CBA30051D8C9 /* AutoLaunchHelper.swift in Sources */,
 				430175FB1CF2CBCF0051D8C9 /* SystemThemeChangeHelper.swift in Sources */,
+				F7C13AC9242B4CF4003641B3 /* Statbar-Bridging-Body.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

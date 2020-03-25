@@ -10,18 +10,18 @@ import Foundation
 
 open class SystemMonitor: NSObject {
     let statusItemView: StatusItemView
-    let networkstat: UnsafeMutableRawPointer
+    let networkMonitor: UnsafeMutableRawPointer
     let interval: Double = 1
     var lastInBytes: Double = 0
     var lastOutBytes: Double = 0
     
     init(statusItemView view: StatusItemView) {
         statusItemView = view
-        networkstat = UnsafeMutableRawPointer(CreateNetworkStat())
+        networkMonitor = UnsafeMutableRawPointer(NetworkMonitorCreate())
     }
     
     deinit {
-        DestroyNetworkStat(networkstat);
+        NetworkMonitorDestroy(networkMonitor);
     }
     
     func start() {
@@ -40,16 +40,13 @@ open class SystemMonitor: NSObject {
 
         var upSpeed: Double?
         var downSpeed: Double?
-        if NetworkStatUpdate(networkstat) {
-            let inBytes = NetworkStatGetInBytes(networkstat);
-            let outBytes = NetworkStatGetOutBytes(networkstat);
-            if lastInBytes > 0 && lastOutBytes > 0 {
-                upSpeed = (outBytes - lastOutBytes) / interval
-                downSpeed = (inBytes - lastInBytes) / interval
-            }
-            lastInBytes = inBytes;
-            lastOutBytes = outBytes;
+        let stats = NetworkMonitorStats(networkMonitor)
+        if lastInBytes > 0 && lastOutBytes > 0 {
+            upSpeed = (Double(stats.obytes) - lastOutBytes) / interval
+            downSpeed = (Double(stats.ibytes) - lastInBytes) / interval
         }
+        lastInBytes = Double(stats.ibytes);
+        lastOutBytes = Double(stats.obytes);
 
         statusItemView.updateMetrics(up: upSpeed, down: downSpeed, coreTemp: coreTemp, fanSpeed: fanSpeed);
     }
