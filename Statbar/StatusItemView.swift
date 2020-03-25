@@ -19,7 +19,6 @@ extension String {
 
 open class StatusItemView: NSControl {
     let fontSize: CGFloat = 9
-    var darkMode = false
     var mouseDown = false
     var statusItem: NSStatusItem
 
@@ -33,8 +32,7 @@ open class StatusItemView: NSControl {
         super.init(frame: NSMakeRect(0, 0, statusItem.length, aMenu.menuBarHeight))
         menu = aMenu
         menu?.delegate = self
-        darkMode = SystemThemeChangeHelper.isCurrentDark()
-        SystemThemeChangeHelper.addRespond(target: self, selector: #selector(changeMode))
+        SystemThemeChangeHelper.addRespond(target: self, selector: #selector(self.onSystemThemeChanged))
     }
     
     required public init?(coder: NSCoder) {
@@ -43,7 +41,7 @@ open class StatusItemView: NSControl {
     
     open override func draw(_ dirtyRect: NSRect) {
         statusItem.drawStatusBarBackground(in: dirtyRect, withHighlight: mouseDown)
-        
+        let darkMode = SystemThemeChangeHelper.isCurrentDark()
         let fontColor = (darkMode || mouseDown) ? NSColor.white : NSColor.black
         let fontAttributes = [
             NSAttributedStringKey.font: NSFont.monospacedDigitSystemFont(ofSize: fontSize, weight: NSFont.Weight.regular),
@@ -136,8 +134,7 @@ open class StatusItemView: NSControl {
         return String(format: format, result) + unit
     }
     
-    @objc func changeMode() {
-        darkMode = SystemThemeChangeHelper.isCurrentDark()
+    @objc func onSystemThemeChanged(notification: NSNotification) {
         setNeedsDisplay()
     }
 }
