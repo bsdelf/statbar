@@ -9,7 +9,7 @@
 import AppKit
 import Foundation
 
-open class StatusItemView: NSControl {
+public class StatusItemView: NSControl {
     let fontSize: CGFloat = 9
     var mouseDown = false
     var statusItem: NSStatusItem
@@ -19,11 +19,11 @@ open class StatusItemView: NSControl {
     var fanSpeedStr = "- -"
     var coreTempStr = "- -"
     
-    init(statusItem aStatusItem: NSStatusItem, menu aMenu: NSMenu) {
-        statusItem = aStatusItem
-        super.init(frame: NSMakeRect(0, 0, statusItem.length, aMenu.menuBarHeight))
-        menu = aMenu
-        menu?.delegate = self
+    init(statusItem: NSStatusItem, menu: NSMenu) {
+        self.statusItem = statusItem
+        super.init(frame: NSMakeRect(0, 0, statusItem.length, menu.menuBarHeight))
+        self.menu = menu
+        self.menu?.delegate = self
         SystemThemeChangeHelper.addRespond(target: self, selector: #selector(self.onSystemThemeChanged))
     }
     
@@ -31,8 +31,8 @@ open class StatusItemView: NSControl {
         fatalError("init(coder:) has not been implemented")
     }
     
-    open override func draw(_ dirtyRect: NSRect) {
-        statusItem.drawStatusBarBackground(in: dirtyRect, withHighlight: mouseDown)
+    override public func draw(_ dirtyRect: NSRect) {
+        self.statusItem.drawStatusBarBackground(in: dirtyRect, withHighlight: mouseDown)
         let darkMode = SystemThemeChangeHelper.isCurrentDark()
         let fontColor = (darkMode || mouseDown) ? NSColor.white : NSColor.black
         let fontAttributes = [
@@ -43,15 +43,15 @@ open class StatusItemView: NSControl {
         let rectSize = NSSize(width: 80, height: 20)
         
         let strs = [
-            upRateStr + " ↗",
-            downRateStr + " ↙",
-            coreTempStr + " ℃",
-            fanSpeedStr + " ♨",
+            self.upRateStr + " ↗",
+            self.downRateStr + " ↙",
+            self.coreTempStr + " ℃",
+            self.fanSpeedStr + " ♨",
         ]
         
         // 5 | 40 | 5 | 40 |
         
-        var xoffset = bounds.width;
+        var xoffset = self.bounds.width;
         outerLoop:
         for col in (0 ..< ((strs.count + 1) / 2)).reversed() {
             var yoffset = CGFloat(0);
@@ -69,66 +69,29 @@ open class StatusItemView: NSControl {
         }
     }
     
-    open func updateMetrics(up: Double?, down: Double?, coreTemp: Int?, fanSpeed: Int?) {
+    public func updateMetrics(up: Double?, down: Double?, coreTemp: Int?, fanSpeed: Int?) {
         if let val = up {
-            upRateStr = formatRateData(val).padStart(targetLength: 11)
+            self.upRateStr = formatSpeed(val).padStart(targetLength: 11)
         }
         if let val = down {
-            downRateStr = formatRateData(val).padStart(targetLength: 11)
+            self.downRateStr = formatSpeed(val).padStart(targetLength: 11)
         }
         if let val = coreTemp {
-            coreTempStr = String(val).padStart(targetLength: 4)
+            self.coreTempStr = String(val).padStart(targetLength: 4)
         }
         if let val = fanSpeed {
-            fanSpeedStr = String(max(val, 0)).padStart(targetLength: 4)
+            self.fanSpeedStr = String(max(val, 0)).padStart(targetLength: 4)
         }
-        setNeedsDisplay()
-    }
-    
-    func formatRateData(_ data:Double) -> String {
-        let KB: Double = 1024
-        let MB: Double = KB * 1024
-        let GB: Double = MB * 1024
-        let TB: Double = GB * 1024
-        
-        var result: Double
-        var unit: String
-        if data < KB / 100 {
-            result = 0
-            return "0.00 KB/s"
-        } else if data < MB {
-            result = data / KB
-            unit = " KB/s"
-        } else if data < GB {
-            result = data / MB
-            unit = " MB/s"
-        } else if data < TB {
-            result = data / GB
-            unit = " GB/s"
-        } else {
-            result = 1023
-            unit = " GB/s"
-        }
-        
-        var format: String
-        if result < 100 {
-            format = "%0.2f"
-        } else if result < 999 {
-            format = "%0.1f"
-        } else {
-            format = "%0.0f"
-        }
-        
-        return String(format: format, result) + unit
+        self.setNeedsDisplay()
     }
     
     @objc func onSystemThemeChanged(notification: NSNotification) {
-        setNeedsDisplay()
+        self.setNeedsDisplay()
     }
 }
 
-//action
-extension StatusItemView: NSMenuDelegate{
+// actions
+extension StatusItemView: NSMenuDelegate {
     open override func mouseDown(with theEvent: NSEvent) {
         statusItem.popUpMenu(menu!)
     }
@@ -142,4 +105,41 @@ extension StatusItemView: NSMenuDelegate{
         mouseDown = false
         setNeedsDisplay()
     }
+}
+
+func formatSpeed(_ val: Double) -> String {
+    let KB: Double = 1024
+    let MB: Double = KB * 1024
+    let GB: Double = MB * 1024
+    let TB: Double = GB * 1024
+
+    var result: Double
+    var unit: String
+    if val < KB / 100 {
+        result = 0
+        return "0.00 KB/s"
+    } else if val < MB {
+        result = val / KB
+        unit = " KB/s"
+    } else if val < GB {
+        result = val / MB
+        unit = " MB/s"
+    } else if val < TB {
+        result = val / GB
+        unit = " GB/s"
+    } else {
+        result = val / TB
+        unit = " TB/s"
+    }
+
+    var format: String
+    if result < 100 {
+        format = "%0.2f"
+    } else if result < 999 {
+        format = "%0.1f"
+    } else {
+        format = "%0.0f"
+    }
+
+    return String(format: format, result) + unit
 }

@@ -8,7 +8,7 @@
 
 "Start at login" = "Start at login";
 "About" = "About";
-"Quit Statbar" = "Quit Statbar";
+"Quit" = "Quit";
 "Close" = "Close";
-"About Statbar" = "About Statbar";
+"About title" = "About Statbar";
 "About content" = "Statbar is a menu bar app for macOS that monitors various system metrics.";

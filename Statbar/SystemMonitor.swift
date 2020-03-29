@@ -9,45 +9,46 @@
 import Foundation
 
 open class SystemMonitor: NSObject {
-    let statusItemView: StatusItemView
-    let networkMonitor: UnsafeMutableRawPointer
-    let interval: Double = 1
+    let interval: TimeInterval
     var lastInBytes: Double = 0
     var lastOutBytes: Double = 0
-    
-    init(statusItemView view: StatusItemView) {
-        statusItemView = view
-        networkMonitor = UnsafeMutableRawPointer(NetworkMonitorCreate())
-    }
-    
-    deinit {
-        NetworkMonitorDestroy(networkMonitor);
+    var networkMonitor: UnsafeMutableRawPointer?
+    var timer: Timer? = nil
+    var statusItemView: StatusItemView? = nil
+
+    init(interval: TimeInterval) {
+        self.interval = interval
     }
     
     func start() {
-        do {
-            try SMCKit.open();
-        } catch _ {
-            
-        }
-
-        Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(updateStat), userInfo: nil, repeats: true)
+        try? SMCKit.open();
+        self.lastInBytes = 0
+        self.lastOutBytes = 0
+        self.networkMonitor = UnsafeMutableRawPointer(NetworkMonitorCreate())
+        self.timer = Timer.scheduledTimer(timeInterval: interval, target: self, selector: #selector(self.updateStats), userInfo: nil, repeats: true)
     }
     
-    @objc func updateStat() {
+    func stop() {
+        self.timer?.invalidate()
+        self.timer = nil
+        NetworkMonitorDestroy(self.networkMonitor);
+        _ = SMCKit.close();
+    }
+    
+    @objc func updateStats() {
         let coreTemp = try? Int(SMCKit.temperature(TemperatureSensors.CPU_0_PROXIMITY.code))
         let fanSpeed = try? SMCKit.fanCurrentSpeed(0)
 
         var upSpeed: Double?
         var downSpeed: Double?
-        let stats = NetworkMonitorStats(networkMonitor)
+        let stats = NetworkMonitorStats(self.networkMonitor)
         if lastInBytes > 0 && lastOutBytes > 0 {
-            upSpeed = (Double(stats.obytes) - lastOutBytes) / interval
-            downSpeed = (Double(stats.ibytes) - lastInBytes) / interval
+            upSpeed = (Double(stats.obytes) - self.lastOutBytes) / self.interval
+            downSpeed = (Double(stats.ibytes) - self.lastInBytes) / self.interval
         }
-        lastInBytes = Double(stats.ibytes);
-        lastOutBytes = Double(stats.obytes);
+        self.lastInBytes = Double(stats.ibytes);
+        self.lastOutBytes = Double(stats.obytes);
 
-        statusItemView.updateMetrics(up: upSpeed, down: downSpeed, coreTemp: coreTemp, fanSpeed: fanSpeed);
+        self.statusItemView?.updateMetrics(up: upSpeed, down: downSpeed, coreTemp: coreTemp, fanSpeed: fanSpeed);
     }
 }
