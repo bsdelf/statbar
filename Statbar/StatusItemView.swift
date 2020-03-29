@@ -9,14 +9,6 @@
 import AppKit
 import Foundation
 
-extension String {
-    func leftPadding(toLength: Int, withPad: String = " ") -> String {
-        guard toLength > self.count else { return self }
-        let padding = String(repeating: withPad, count: toLength - self.count)
-        return padding + self
-    }
-}
-
 open class StatusItemView: NSControl {
     let fontSize: CGFloat = 9
     var mouseDown = false
@@ -79,22 +71,18 @@ open class StatusItemView: NSControl {
     
     open func updateMetrics(up: Double?, down: Double?, coreTemp: Int?, fanSpeed: Int?) {
         if let val = up {
-            upRateStr = addBlank(str: formatRateData(val), toLength: 11)
+            upRateStr = formatRateData(val).padStart(targetLength: 11)
         }
         if let val = down {
-            downRateStr = addBlank(str: formatRateData(val), toLength: 11)
+            downRateStr = formatRateData(val).padStart(targetLength: 11)
         }
         if let val = coreTemp {
-            coreTempStr = addBlank(str: "\(val)", toLength: 4)
+            coreTempStr = String(val).padStart(targetLength: 4)
         }
         if let val = fanSpeed {
-            fanSpeedStr = addBlank(str: val < 1 ? "0" : "\(val)", toLength: 4)
+            fanSpeedStr = String(max(val, 0)).padStart(targetLength: 4)
         }
         setNeedsDisplay()
-    }
-    
-    func addBlank(str: String, toLength: Int) -> String {
-        return str.leftPadding(toLength: toLength, withPad: " ")
     }
     
     func formatRateData(_ data:Double) -> String {
