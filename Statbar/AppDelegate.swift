@@ -77,7 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(aboutMenu)
         menu.addItem(quitMenu)
         
-        self.statusItem = NSStatusBar.system.statusItem(withLength: 120)
+        self.statusItem = NSStatusBar.system.statusItem(withLength: 114)
         self.statusItemView = StatusItemView(statusItem: statusItem, menu: menu)
         self.statusItem.view = self.statusItemView
     }
