@@ -38,7 +38,7 @@ open class SystemMonitor: NSObject {
     @objc func updateStats() {
         let coreTemp = try? Int(SMCKit.temperature(TemperatureSensors.CPU_0_PROXIMITY.code))
         let fanSpeed = try? SMCKit.fanCurrentSpeed(0)
-
+        
         var upSpeed: Double?
         var downSpeed: Double?
         let stats = NetworkMonitorStats(self.networkMonitor)

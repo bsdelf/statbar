@@ -49,6 +49,14 @@ public typealias SMCBytes = (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8,
 // MARK: Standard Library Extensions
 //------------------------------------------------------------------------------
 
+extension Float32 {
+    init(fromFLT bytes: [UInt8]) {
+        var dest: Float32 = 0;
+        memcpy(&dest, bytes, 4);
+        self = dest;
+    }
+}
+
 extension UInt32 {
 
     init(fromBytes bytes: (UInt8, UInt8, UInt8, UInt8)) {
@@ -261,6 +269,8 @@ public struct DataTypes {
                  DataType(type: FourCharCode(fromStaticString: "ui8 "), size: 1)
     public static let UInt32 =
                  DataType(type: FourCharCode(fromStaticString: "ui32"), size: 4)
+    public static let FLT =
+                DataType(type: FourCharCode(fromStaticString: "flt "), size: 4)
 }
 
 public struct SMCKey {
@@ -700,10 +710,10 @@ extension SMCKit {
 
     public static func fanCurrentSpeed(_ id: Int) throws -> Int {
         let key = SMCKey(code: FourCharCode(fromString: "F\(id)Ac"),
-                                            info: DataTypes.FPE2)
+                                            info: DataTypes.FLT)
 
         let data = try readData(key)
-        return Int(fromFPE2: (data.0, data.1))
+        return Int(Float32(fromFLT: [data.0, data.1, data.2, data.3]))
     }
 
     public static func fanMinSpeed(_ id: Int) throws -> Int {
