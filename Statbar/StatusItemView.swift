@@ -16,8 +16,8 @@ public class StatusItemView: NSControl {
 
     var upRateStr = "- - KB/s"
     var downRateStr = "- - KB/s"
-    var fanSpeedStr = "- -"
-    var coreTempStr = "- -"
+//    var fanSpeedStr = "- -"
+//    var coreTempStr = "- -"
     
     init(statusItem: NSStatusItem, menu: NSMenu) {
         self.statusItem = statusItem
@@ -45,8 +45,8 @@ public class StatusItemView: NSControl {
         let strs = [
             self.upRateStr + " ↗",
             self.downRateStr + " ↙",
-            self.coreTempStr + " ℃",
-            self.fanSpeedStr + " ♨",
+//            self.coreTempStr + " ℃",
+//            self.fanSpeedStr + " ♨",
         ]
         
         // 5 | 40 | 5 | 40 |
@@ -76,12 +76,12 @@ public class StatusItemView: NSControl {
         if let val = down {
             self.downRateStr = formatSpeed(val).padStart(targetLength: 11)
         }
-        if let val = coreTemp {
-            self.coreTempStr = String(val).padStart(targetLength: 4)
-        }
-        if let val = fanSpeed {
-            self.fanSpeedStr = String(max(val, 0)).padStart(targetLength: 4)
-        }
+//        if let val = coreTemp {
+//            self.coreTempStr = String(val).padStart(targetLength: 4)
+//        }
+//        if let val = fanSpeed {
+//            self.fanSpeedStr = String(max(val, 0)).padStart(targetLength: 4)
+//        }
         self.setNeedsDisplay()
     }
     

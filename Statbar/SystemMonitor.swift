@@ -21,7 +21,7 @@ open class SystemMonitor: NSObject {
     }
     
     func start() {
-        try? SMCKit.open();
+//        try? SMCKit.open();
         self.lastInBytes = 0
         self.lastOutBytes = 0
         self.networkMonitor = UnsafeMutableRawPointer(NetworkMonitorCreate())
@@ -32,12 +32,12 @@ open class SystemMonitor: NSObject {
         self.timer?.invalidate()
         self.timer = nil
         NetworkMonitorDestroy(self.networkMonitor);
-        _ = SMCKit.close();
+//        _ = SMCKit.close();
     }
     
     @objc func updateStats() {
-        let coreTemp = try? Int(SMCKit.temperature(TemperatureSensors.CPU_0_PROXIMITY.code))
-        let fanSpeed = try? SMCKit.fanCurrentSpeed(0)
+//        let coreTemp = try? Int(SMCKit.temperature(TemperatureSensors.CPU_0_PROXIMITY.code))
+//        let fanSpeed = try? SMCKit.fanCurrentSpeed(0)
 
         var upSpeed: Double?
         var downSpeed: Double?
@@ -49,6 +49,6 @@ open class SystemMonitor: NSObject {
         self.lastInBytes = Double(stats.ibytes);
         self.lastOutBytes = Double(stats.obytes);
 
-        self.statusItemView?.updateMetrics(up: upSpeed, down: downSpeed, coreTemp: coreTemp, fanSpeed: fanSpeed);
+        self.statusItemView?.updateMetrics(up: upSpeed, down: downSpeed, coreTemp: nil, fanSpeed: nil);
     }
 }
