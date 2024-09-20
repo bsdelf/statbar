@@ -3,7 +3,7 @@
 //  Statbar
 //
 //  Created by bsdelf on 2020/3/25.
-//  Copyright © 2020 bsdelf. All rights reserved.
+//  Copyright © 2024 bsdelf. All rights reserved.
 //
 
 #include "NetworkMonitor.hpp"
@@ -17,8 +17,8 @@ extern "C" {
         delete static_cast<NetworkMonitor*>(ptr);
     }
     
-    struct NetworkStats NetworkMonitorStats(void* ptr) {
+    struct NetworkMonitorSampleData NetworkMonitorSample(void* ptr) {
         auto self = static_cast<NetworkMonitor*>(ptr);
-        return self->Stats();
+        return self->Sample();
     }
 }

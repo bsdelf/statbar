@@ -2,11 +2,10 @@
   Localizable.strings
   Statbar
 
-  Copyright © 2017 bsdelf. All rights reserved.
+  Copyright © 2024 bsdelf. All rights reserved.
   Copyright © 2016 郭佳哲. All rights reserved.
 */
 
-"Start at login" = "Start at login";
 "About" = "About";
 "Quit" = "Quit";
 "Close" = "Close";

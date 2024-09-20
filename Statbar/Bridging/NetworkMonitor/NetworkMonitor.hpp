@@ -1,6 +1,6 @@
 //
 //  NetworkMonitor.hpp
-//  statbar
+//  statusbar
 //
 //  Copyright © 2018年 bsdelf. All rights reserved.
 //
@@ -8,12 +8,12 @@
 #pragma once
 
 #include <vector>
-#include "NetworkStats.h"
+#include "NetworkMonitorSampleData.h"
 
 class NetworkMonitor {
 public:
-    auto Stats() -> NetworkStats;
-    
+    auto Sample() -> NetworkMonitorSampleData;
+
 private:
-    std::vector<char> buf_;
+    std::vector<char> buffer_;
 };

@@ -1,6 +1,6 @@
 //
 //  NetworkMonitor.cpp
-//  statbar
+//  statusbar
 //
 //  Copyright © 2018年 bsdelf. All rights reserved.
 //
@@ -20,7 +20,8 @@
 
 // Reference:
 // https://opensource.apple.com/source/top/top-67/libtop.c
-auto NetworkMonitor::Stats() -> NetworkStats {
+auto NetworkMonitor::Sample() -> NetworkMonitorSampleData {
+    const NetworkMonitorSampleData emptyResult {0,0};
     // read data
     int name[] = {
         CTL_NET,
@@ -34,29 +35,29 @@ auto NetworkMonitor::Stats() -> NetworkStats {
     size_t buflen = 0;
     if (sysctl(name, namelen, nullptr, &buflen, nullptr, 0) < 0) {
         fprintf(stderr, "sysctl: %s\n", strerror(errno));
-        return {0, 0};
+        return emptyResult;
     }
-    if (buf_.size() != buflen) {
-        buf_.resize(buflen);
+    if (buffer_.size() != buflen) {
+        buffer_.resize(buflen);
     }
-    if (sysctl(name, namelen, buf_.data(), &buflen, nullptr, 0) < 0) {
+    if (sysctl(name, namelen, buffer_.data(), &buflen, nullptr, 0) < 0) {
         fprintf(stderr, "sysctl: %s\n", strerror(errno));
-        return {0, 0};
+        return emptyResult;
     }
     
     // parse data
-    uint32_t ibytes = 0;
-    uint32_t obytes = 0;
-    char* lim = buf_.data() + buflen;
-    char* next = buf_.data();
+    uint64_t inBytes = 0;
+    uint64_t outBytes = 0;
+    char* lim = buffer_.data() + buflen;
+    char* next = buffer_.data();
     while (next < lim) {
         auto ifm = reinterpret_cast<struct if_msghdr*>(next);
         next += ifm->ifm_msglen;
         if (ifm->ifm_type == RTM_IFINFO2) {
             auto if2m = reinterpret_cast<struct if_msghdr2*>(ifm);
-            ibytes += if2m->ifm_data.ifi_ibytes;
-            obytes += if2m->ifm_data.ifi_obytes;
+            inBytes += if2m->ifm_data.ifi_ibytes;
+            outBytes += if2m->ifm_data.ifi_obytes;
         }
     }
-    return {ibytes, obytes};
+    return {inBytes, outBytes};
 }
