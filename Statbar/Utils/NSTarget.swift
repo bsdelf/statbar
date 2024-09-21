@@ -2,7 +2,7 @@
 //  NSTarget.swift
 //  Statbar
 //
-//  Created by Artoo Detoo on 2024/9/21.
+//  Created by bsdelf on 2024/9/21.
 //  Copyright © 2024 bsdelf. All rights reserved.
 //
 

@@ -3,8 +3,9 @@
 //
 //  Copyright © 2024 bsdelf. All rights reserved.
 
-#include "NetworkMonitorSampleData.h"
+#pragma once
+#include "NetworkSampleData.h"
 
 void* NetworkMonitorCreate();
 void NetworkMonitorDestroy(void* ptr);
-struct NetworkMonitorSampleData NetworkMonitorSample(void* ptr);
+struct NetworkSampleData NetworkMonitorSample(void* ptr);

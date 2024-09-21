@@ -1,6 +1,6 @@
 //
 //  String.swift
-//  statusbar
+//  statbar
 //
 //  Created by bsdelf on 2020/3/29.
 //  Copyright © 2020 bsdelf. All rights reserved.

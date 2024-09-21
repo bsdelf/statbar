@@ -32,8 +32,8 @@ open class SystemMonitor {
         var result = SystemMonitorSampleData()
 
         let sampleData = NetworkMonitorSample(self.networkMonitor)
-        let nextInbytes = Double(sampleData.inBytes)
-        let nextOutbytes = Double(sampleData.outBytes)
+        let nextInbytes = Double(sampleData.in_bytes)
+        let nextOutbytes = Double(sampleData.out_bytes)
         let nextSampledAt = Date().timeIntervalSince1970
 
         if sampledAt >= 0 {

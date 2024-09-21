@@ -17,7 +17,7 @@ extern "C" {
         delete static_cast<NetworkMonitor*>(ptr);
     }
     
-    struct NetworkMonitorSampleData NetworkMonitorSample(void* ptr) {
+    struct NetworkSampleData NetworkMonitorSample(void* ptr) {
         auto self = static_cast<NetworkMonitor*>(ptr);
         return self->Sample();
     }

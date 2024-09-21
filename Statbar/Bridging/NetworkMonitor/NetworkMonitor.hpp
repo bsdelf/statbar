@@ -1,19 +1,21 @@
 //
 //  NetworkMonitor.hpp
-//  statusbar
+//  statbar
 //
-//  Copyright © 2018年 bsdelf. All rights reserved.
+//  Copyright © 2024年 bsdelf. All rights reserved.
 //
 
 #pragma once
 
 #include <vector>
-#include "NetworkMonitorSampleData.h"
+#include <inttypes.h>
+
+#include "NetworkSampleData.h"
 
 class NetworkMonitor {
 public:
-    auto Sample() -> NetworkMonitorSampleData;
+    auto Sample() -> NetworkSampleData;
 
 private:
-    std::vector<char> buffer_;
+    std::vector<uint8_t> buffer_;
 };
