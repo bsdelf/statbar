@@ -1,5 +1,5 @@
 //
-//  StatbarTests.swift
+//  StringExtensionTest.swift
 //  StatbarTests
 //
 //  Created by Artoo Detoo on 2024/9/21.
@@ -9,7 +9,7 @@
 import Testing
 @testable import Statbar
 
-struct StringExtensionTests {
+struct StringExtensionTest {
 
     @Test("Pads a string from the start", arguments: [
         ("", 0, "", ""),

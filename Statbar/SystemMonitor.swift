@@ -8,16 +8,17 @@
 
 import Foundation
 
-struct SystemMonitorSampleData {
-    var inBytesPerSecond: Double?
-    var outBytesPerSecond: Double?
+struct NetworkStat {
+    var inBytesPerSecond: Double
+    var outBytesPerSecond: Double
 }
 
-open class SystemMonitor {
+final class SystemMonitor {
     var networkMonitor: UnsafeMutableRawPointer? = nil
     var sampledAt: TimeInterval = -1;
     var sampledInBytes: Double = -1
     var sampledOutBytes: Double = -1
+    var networkStats = Ring<NetworkStat>(capacity: 2)
 
     init() {
         self.networkMonitor = UnsafeMutableRawPointer(NetworkMonitorCreate())
@@ -28,9 +29,7 @@ open class SystemMonitor {
         self.networkMonitor = nil
     }
 
-    func sapmple() -> SystemMonitorSampleData {
-        var result = SystemMonitorSampleData()
-
+    func update() -> NetworkStat? {
         let sampleData = NetworkMonitorSample(self.networkMonitor)
         let nextInbytes = Double(sampleData.in_bytes)
         let nextOutbytes = Double(sampleData.out_bytes)
@@ -38,13 +37,31 @@ open class SystemMonitor {
 
         if sampledAt >= 0 {
             let elapsedSeconds = nextSampledAt - sampledAt
-            result.inBytesPerSecond = (nextInbytes - sampledInBytes) / elapsedSeconds
-            result.outBytesPerSecond = (nextOutbytes - sampledOutBytes) / elapsedSeconds
+            let inBytesPerSecond = (nextInbytes - sampledInBytes) / elapsedSeconds
+            let outBytesPerSecond = (nextOutbytes - sampledOutBytes) / elapsedSeconds
+            let networkStat = NetworkStat(
+                inBytesPerSecond: inBytesPerSecond,
+                outBytesPerSecond: outBytesPerSecond
+            )
+            networkStats.push(item: networkStat)
         }
         sampledAt = nextSampledAt
         sampledInBytes = nextInbytes
         sampledOutBytes = nextOutbytes
 
-        return result
+        if networkStats.items.isEmpty {
+            return nil
+        }
+
+        // calculate average
+        var inBytesPerSecond: Double = 0
+        var outBytesPerSecond: Double = 0
+        for item in networkStats.items {
+            inBytesPerSecond += item.inBytesPerSecond
+            outBytesPerSecond += item.outBytesPerSecond
+        }
+        inBytesPerSecond /= Double(networkStats.items.count)
+        outBytesPerSecond /= Double(networkStats.items.count)
+        return NetworkStat(inBytesPerSecond: inBytesPerSecond, outBytesPerSecond: outBytesPerSecond)
     }
 }

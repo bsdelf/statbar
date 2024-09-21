@@ -48,7 +48,7 @@ func buildMenu(_ targets: inout[NSTarget]) -> NSMenu {
     return menu
 }
 
-public class StatbarController {
+final class StatbarController {
     var statusItem: NSStatusItem
     var menu: NSMenu
     var view = StatbarView()
@@ -70,7 +70,7 @@ public class StatbarController {
         button.action = #selector(itemClicked)
         button.sendAction(on: [.leftMouseDown])
 
-        updateTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { _ in
+        updateTimer = Timer.scheduledTimer(withTimeInterval: 0.75, repeats: true, block: { _ in
             self.update()
         })
     }
@@ -81,11 +81,11 @@ public class StatbarController {
     }
 
     func update() {
-        let sampleData = systemMonitor.sapmple()
+        guard let stat = systemMonitor.update() else {return}
         view
             .update(
-                up: sampleData.outBytesPerSecond,
-                down: sampleData.inBytesPerSecond,
+                up: stat.outBytesPerSecond,
+                down: stat.inBytesPerSecond,
                 coreTemp: nil,
                 fanSpeed: nil
             )
