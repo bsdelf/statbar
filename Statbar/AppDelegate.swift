@@ -8,10 +8,11 @@
 
 import Cocoa
 
-@NSApplicationMain
+@main
 class AppDelegate: NSObject, NSApplicationDelegate {
     var controller: StatbarController
 
+    @MainActor
     override init() {
         controller = StatbarController();
     }

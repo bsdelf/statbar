@@ -9,6 +9,7 @@
 import AppKit
 import Foundation
 
+@MainActor
 func buildMenu(_ targets: inout[NSTarget]) -> NSMenu {
     let aboutMenu = NSMenuItem()
     let aboutMenuTarget = NSTarget{
@@ -48,10 +49,11 @@ func buildMenu(_ targets: inout[NSTarget]) -> NSMenu {
     return menu
 }
 
+@MainActor
 final class StatbarController {
     var statusItem: NSStatusItem
     var menu: NSMenu
-    var view = StatbarView()
+    var view: StatbarView
     var targets = Array<NSTarget>()
     var systemMonitor = SystemMonitor()
     var updateTimer: Timer?
@@ -61,6 +63,7 @@ final class StatbarController {
         statusItem.isVisible = true
         statusItem.length = 72
         menu = buildMenu(&targets)
+        view = StatbarView()
 
         guard let button = statusItem.button else {return}
         view.frame = button.bounds
@@ -70,9 +73,16 @@ final class StatbarController {
         button.action = #selector(itemClicked)
         button.sendAction(on: [.leftMouseDown])
 
-        updateTimer = Timer.scheduledTimer(withTimeInterval: 0.75, repeats: true, block: { _ in
-            self.update()
-        })
+        updateTimer = Timer
+            .scheduledTimer(
+                withTimeInterval: 0.75,
+                repeats: true,
+                block: {_ in
+                    Task {
+                        await self.update()
+                    }
+                }
+            )
     }
 
     func dismiss() {
